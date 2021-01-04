@@ -1,0 +1,69 @@
+body {
+    width : 1248px;
+    height : 702px;
+    margin : 0px;
+}
+
+header.top-pannel {
+    padding : 20px;
+}
+
+section.main-pannel {
+    padding : 0px 30px 0px 10px;
+}
+
+.float-left {
+    float : left;
+}
+
+.float-right {
+    float: right;
+}
+
+ul#list-dna-item { list-style-type: none; margin: 10px 0px; padding: 0; width: 300px; height : 610px; overflow:hidden; overflow-y:scroll; }
+ul#list-dna-item::-webkit-scrollbar { display : none; }
+ul#list-dna-item li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.0em; height: 1.5em; cursor: default; }
+ul#list-dna-item li.selected { border: 1px solid #003EFF; background-color:#007FFF; color:white; }
+ul#list-dna-item li:hover { font-weight: bold; }
+
+div.code-dna {
+
+    height : 610px;
+    margin-left : 50px;
+}
+
+
+textarea#ta-code-dna {
+    resize: none;
+    width : 360px;
+    height : 500px;
+}
+
+#fldset-dna-format {
+    padding : 10px 60px 10px 30px;
+    margin-bottom : 20px;
+}
+
+
+#fldset-add-dialog {
+    padding:0;
+    margin-top:25px;
+    border:0;
+}
+
+#fldset-add-dialog input {
+    width:95%;
+    margin-bottom:12px;
+    padding: .4em;
+}
+
+img#dlg-img {
+    border: 1px solid black;
+}
+
+div#main-img-frame {
+    width : 450px;
+    height : 590px;
+    margin-top : 10px;
+    border : 1px solid black;
+}

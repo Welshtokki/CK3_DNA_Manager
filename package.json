@@ -1,0 +1,43 @@
+{
+  "name": "ck3-dna-manager",
+  "version": "1.0.0",
+  "description": "Crusader Kings 3 DNA Manager",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack:win64": "electron-packager . CK3_DNA_Manager --asar --prune --out=build/ --platfrom=win32 --arch=x64 --icon=icon/ck3.ico",
+    "pack:win32": "electron-packager . CK3_DNA_Manager --out=build/ --platfrom=win32 --arch=ia32 --icon=icon/ck3.ico",
+    "build:win-ia32": "electron-builder --win --ia32",
+    "build:win-x64": "electron-builder --win --x64"
+  },
+  "keywords": [],
+  "author": "Welshtokki",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^11.1.1",
+    "electron-packager": "^15.2.0"
+  },
+  "build": {
+    "asar": false,
+    "appId": "com.welshtokki.ck3",
+    "productName": "CK3 DNA Manager",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "./icon/ck3_256.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "installerIcon": "./icon/ck3_256.png",
+      "createDesktopShortcut": true
+    }
+  }
+}
