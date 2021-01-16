@@ -1,4 +1,5 @@
 body {
+    display:none;
     width : 1248px;
     height : 702px;
     margin : 0px;
@@ -60,6 +61,27 @@ textarea#ta-code-dna {
 img#dlg-img {
     border: 1px solid black;
 }
+
+#fldset-edit-dialog {
+    padding:0;
+    margin-top:25px;
+    border:0;
+}
+
+#fldset-edit-dialog label {
+    width: 300px;
+    padding-right: 10px;
+    display: inline-block;
+    text-align: right;
+}
+
+#fldset-edit-dialog input {
+    width: 100px;
+    margin-bottom: 8px;
+    padding: .4em;
+    text-align: center;
+}
+
 
 div#main-img-frame {
     width : 450px;

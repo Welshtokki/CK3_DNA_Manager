@@ -9,10 +9,14 @@ function loadDnaDb() {
         let f = fs.readFileSync("./data/CK3_DNA_DB.json");
         json = JSON.parse(f.toString());
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 
-    return json.data;
+    if(json) {
+        return json.data;
+    }
+
+    return undefined;
 }
 
 function saveDnaDb(jsonString) {
@@ -144,6 +148,10 @@ function toBase64Format(geneArray) {
     return result;
 }
 
+function getGeneIndexKeys() {
+    return Object.keys(geneIndex);
+}
+
 exports.loadDnaDb = loadDnaDb;
 exports.saveDnaDb = saveDnaDb;
 exports.parseBase64Dna = parseBase64Dna;
@@ -152,6 +160,7 @@ exports.validateGeneArray = validateGeneArray;
 exports.mitigateInvalidGeneArray = mitigateInvalidGeneArray;
 exports.toRulerDesignerFormat = toRulerDesignerFormat;
 exports.toBase64Format = toBase64Format;
+exports.getGeneIndexKeys = getGeneIndexKeys;
 
 function base64encode(plaintext){
     return Buffer.from(plaintext, "hex").toString('base64');

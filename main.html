@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>CK3 DNA Manager</title>
+    <title>CK3 DNA Manager - Ver 1.0.0</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 
     <link rel="stylesheet" href="lib/jquery-ui-1.12.1/jquery-ui.min.css">
@@ -13,7 +13,7 @@
     <header class="top-pannel">
         <button id="btn-add-dna">DNA 추가</button>
         <button id="btn-del-dna">DNA 삭제</button>
-        <div class="float-right">- Prototype Ver</div>
+        <button id="btn-edit-dna">DNA 편집</button>
     </header>
 
     <section class="main-pannel">
@@ -57,6 +57,1516 @@
         </form>
     </div>
 
+    <div id="edit-dna-dialog-form" title="DNA 편집">
+        <form>
+            <fieldset id="fldset-edit-dialog">
+                <div>
+                    <label for="hair_color">hair_color</label>
+                    <input type="number" name="dlg-input-number" class="hair_color" min="0" max="255">
+                    <input type="number" name="dlg-input-number" class="hair_color" min="0" max="255">
+                    <input type="number" name="dlg-input-number" class="hair_color" min="0" max="255">
+                    <input type="number" name="dlg-input-number" class="hair_color" min="0" max="255">
+                </div>
+                <div>
+                    <label for="skin_color">skin_color</label>
+                    <input type="number" name="dlg-input-number" class="skin_color" min="0" max="255">
+                    <input type="number" name="dlg-input-number" class="skin_color" min="0" max="255">
+                    <input type="number" name="dlg-input-number" class="skin_color" min="0" max="255">
+                    <input type="number" name="dlg-input-number" class="skin_color" min="0" max="255">
+                </div>
+                <div>
+                    <label for="eye_color">eye_color</label>
+                    <input type="number" name="dlg-input-number" class="eye_color" min="0" max="255">
+                    <input type="number" name="dlg-input-number" class="eye_color" min="0" max="255">
+                    <input type="number" name="dlg-input-number" class="eye_color" min="0" max="255">
+                    <input type="number" name="dlg-input-number" class="eye_color" min="0" max="255">
+                </div>
+
+                <div>
+                    <label for="gene_chin_forward">gene_chin_forward</label>
+                    <select name="gene_chin_forward" id="gene_chin_forward_current">
+                        <option value="0">chin_forward_neg</option>
+                        <option value="1">chin_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_chin_forward" min="0" max="255">
+                    <select name="gene_chin_forward" id="gene_chin_forward_inherit">
+                        <option value="0">chin_forward_neg</option>
+                        <option value="1">chin_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_chin_forward" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_chin_height">gene_chin_height</label>
+                    <select name="gene_chin_height" id="gene_chin_height_current">
+                        <option value="0">chin_height_neg</option>
+                        <option value="1">chin_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_chin_height" min="0" max="255">
+                    <select name="gene_chin_height" id="gene_chin_height_inherit">
+                        <option value="0">chin_height_neg</option>
+                        <option value="1">chin_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_chin_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_chin_width">gene_chin_width</label>
+                    <select name="gene_chin_width" id="gene_chin_width_current">
+                        <option value="0">chin_width_neg</option>
+                        <option value="1">chin_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_chin_width" min="0" max="255">
+                    <select name="gene_chin_width" id="gene_chin_width_inherit">
+                        <option value="0">chin_width_neg</option>
+                        <option value="1">chin_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_chin_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_eye_angle">gene_eye_angle</label>
+                    <select name="gene_eye_angle" id="gene_eye_angle_current">
+                        <option value="0">eye_angle_neg</option>
+                        <option value="1">eye_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_angle" min="0" max="255">
+                    <select name="gene_eye_angle" id="gene_eye_angle_inherit">
+                        <option value="0">eye_angle_neg</option>
+                        <option value="1">eye_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_angle" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_eye_depth">gene_eye_depth</label>
+                    <select name="gene_eye_depth" id="gene_eye_depth_current">
+                        <option value="0">eye_depth_neg</option>
+                        <option value="1">eye_depth_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_depth" min="0" max="255">
+                    <select name="gene_eye_depth" id="gene_eye_depth_inherit">
+                        <option value="0">eye_depth_neg</option>
+                        <option value="1">eye_depth_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_depth" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_eye_height">gene_eye_height</label>
+                    <select name="gene_eye_height" id="gene_eye_height_current">
+                        <option value="0">eye_height_neg</option>
+                        <option value="1">eye_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_height" min="0" max="255">
+                    <select name="gene_eye_height" id="gene_eye_height_inherit">
+                        <option value="0">eye_height_neg</option>
+                        <option value="1">eye_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_eye_distance">gene_eye_distance</label>
+                    <select name="gene_eye_distance" id="gene_eye_distance_current">
+                        <option value="0">eye_distance_neg</option>
+                        <option value="1">eye_distance_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_distance" min="0" max="255">
+                    <select name="gene_eye_distance" id="gene_eye_distance_inherit">
+                        <option value="0">eye_distance_neg</option>
+                        <option value="1">eye_distance_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_distance" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_eye_shut">gene_eye_shut</label>
+                    <select name="gene_eye_shut" id="gene_eye_shut_current">
+                        <option value="0">eye_shut_neg</option>
+                        <option value="1">eye_shut_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_shut" min="0" max="255">
+                    <select name="gene_eye_shut" id="gene_eye_shut_inherit">
+                        <option value="0">eye_shut_neg</option>
+                        <option value="1">eye_shut_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eye_shut" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_forehead_angle">gene_forehead_angle</label>
+                    <select name="gene_forehead_angle" id="gene_forehead_angle_current">
+                        <option value="0">forehead_angle_neg</option>
+                        <option value="1">forehead_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_angle" min="0" max="255">
+                    <select name="gene_forehead_angle" id="gene_forehead_angle_inherit">
+                        <option value="0">forehead_angle_neg</option>
+                        <option value="1">forehead_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_angle" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_forehead_brow_height">gene_forehead_brow_height</label>
+                    <select name="gene_forehead_brow_height" id="gene_forehead_brow_height_current">
+                        <option value="0">forehead_brow_height_neg</option>
+                        <option value="1">forehead_brow_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_brow_height" min="0" max="255">
+                    <select name="gene_forehead_brow_height" id="gene_forehead_brow_height_inherit">
+                        <option value="0">forehead_brow_height_neg</option>
+                        <option value="1">forehead_brow_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_brow_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_forehead_roundness">gene_forehead_roundness</label>
+                    <select name="gene_forehead_roundness" id="gene_forehead_roundness_current">
+                        <option value="0">forehead_roundness_neg</option>
+                        <option value="1">forehead_roundness_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_roundness" min="0" max="255">
+                    <select name="gene_forehead_roundness" id="gene_forehead_roundness_inherit">
+                        <option value="0">forehead_roundness_neg</option>
+                        <option value="1">forehead_roundness_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_roundness" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_forehead_width">gene_forehead_width</label>
+                    <select name="gene_forehead_width" id="gene_forehead_width_current">
+                        <option value="0">forehead_width_neg</option>
+                        <option value="1">forehead_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_width" min="0" max="255">
+                    <select name="gene_forehead_width" id="gene_forehead_width_inherit">
+                        <option value="0">forehead_width_neg</option>
+                        <option value="1">forehead_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_forehead_height">gene_forehead_height</label>
+                    <select name="gene_forehead_height" id="gene_forehead_height_current">
+                        <option value="0">forehead_height_neg</option>
+                        <option value="1">forehead_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_height" min="0" max="255">
+                    <select name="gene_forehead_height" id="gene_forehead_height_inherit">
+                        <option value="0">forehead_height_neg</option>
+                        <option value="1">forehead_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_forehead_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_head_height">gene_head_height</label>
+                    <select name="gene_head_height" id="gene_head_height_current">
+                        <option value="0">head_height_neg</option>
+                        <option value="1">head_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_height" min="0" max="255">
+                    <select name="gene_head_height" id="gene_head_height_inherit">
+                        <option value="0">head_height_neg</option>
+                        <option value="1">head_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_head_width">gene_head_width</label>
+                    <select name="gene_head_width" id="gene_head_width_current">
+                        <option value="0">head_width_neg</option>
+                        <option value="1">head_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_width" min="0" max="255">
+                    <select name="gene_head_width" id="gene_head_width_inherit">
+                        <option value="0">head_width_neg</option>
+                        <option value="1">head_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_head_profile">gene_head_profile</label>
+                    <select name="gene_head_profile" id="gene_head_profile_current">
+                        <option value="0">head_profile_neg</option>
+                        <option value="1">head_profile_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_profile" min="0" max="255">
+                    <select name="gene_head_profile" id="gene_head_profile_inherit">
+                        <option value="0">head_profile_neg</option>
+                        <option value="1">head_profile_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_profile" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_head_top_height">gene_head_top_height</label>
+                    <select name="gene_head_top_height" id="gene_head_top_height_current">
+                        <option value="0">head_top_height_neg</option>
+                        <option value="1">head_top_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_top_height" min="0" max="255">
+                    <select name="gene_head_top_height" id="gene_head_top_height_inherit">
+                        <option value="0">head_top_height_neg</option>
+                        <option value="1">head_top_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_top_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_head_top_width">gene_head_top_width</label>
+                    <select name="gene_head_top_width" id="gene_head_top_width_current">
+                        <option value="0">head_top_width_neg</option>
+                        <option value="1">head_top_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_top_width" min="0" max="255">
+                    <select name="gene_head_top_width" id="gene_head_top_width_inherit">
+                        <option value="0">head_top_width_neg</option>
+                        <option value="1">head_top_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_head_top_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_jaw_angle">gene_jaw_angle</label>
+                    <select name="gene_jaw_angle" id="gene_jaw_angle_current">
+                        <option value="0">jaw_angle_neg</option>
+                        <option value="1">jaw_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_jaw_angle" min="0" max="255">
+                    <select name="gene_jaw_angle" id="gene_jaw_angle_inherit">
+                        <option value="0">jaw_angle_neg</option>
+                        <option value="1">jaw_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_jaw_angle" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_jaw_forward">gene_jaw_forward</label>
+                    <select name="gene_jaw_forward" id="gene_jaw_forward_current">
+                        <option value="0">jaw_forward_neg</option>
+                        <option value="1">jaw_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_jaw_forward" min="0" max="255">
+                    <select name="gene_jaw_forward" id="gene_jaw_forward_inherit">
+                        <option value="0">jaw_forward_neg</option>
+                        <option value="1">jaw_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_jaw_forward" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_jaw_height">gene_jaw_height</label>
+                    <select name="gene_jaw_height" id="gene_jaw_height_current">
+                        <option value="0">jaw_height_neg</option>
+                        <option value="1">jaw_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_jaw_height" min="0" max="255">
+                    <select name="gene_jaw_height" id="gene_jaw_height_inherit">
+                        <option value="0">jaw_height_neg</option>
+                        <option value="1">jaw_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_jaw_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_jaw_width">gene_jaw_width</label>
+                    <select name="gene_jaw_width" id="gene_jaw_width_current">
+                        <option value="0">jaw_width_neg</option>
+                        <option value="1">jaw_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_jaw_width" min="0" max="255">
+                    <select name="gene_jaw_width" id="gene_jaw_width_inherit">
+                        <option value="0">jaw_width_neg</option>
+                        <option value="1">jaw_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_jaw_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_mouth_corner_depth">gene_mouth_corner_depth</label>
+                    <select name="gene_mouth_corner_depth" id="gene_mouth_corner_depth_current">
+                        <option value="0">mouth_corner_depth_neg</option>
+                        <option value="1">mouth_corner_depth_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_corner_depth" min="0" max="255">
+                    <select name="gene_mouth_corner_depth" id="gene_mouth_corner_depth_inherit">
+                        <option value="0">mouth_corner_depth_neg</option>
+                        <option value="1">mouth_corner_depth_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_corner_depth" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_mouth_corner_height">gene_mouth_corner_height</label>
+                    <select name="gene_mouth_corner_height" id="gene_mouth_corner_height_current">
+                        <option value="0">mouth_corner_height_neg</option>
+                        <option value="1">mouth_corner_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_corner_height" min="0" max="255">
+                    <select name="gene_mouth_corner_height" id="gene_mouth_corner_height_inherit">
+                        <option value="0">mouth_corner_height_neg</option>
+                        <option value="1">mouth_corner_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_corner_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_mouth_forward">gene_mouth_forward</label>
+                    <select name="gene_mouth_forward" id="gene_mouth_forward_current">
+                        <option value="0">mouth_forward_neg</option>
+                        <option value="1">mouth_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_forward" min="0" max="255">
+                    <select name="gene_mouth_forward" id="gene_mouth_forward_inherit">
+                        <option value="0">mouth_forward_neg</option>
+                        <option value="1">mouth_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_forward" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_mouth_height">gene_mouth_height</label>
+                    <select name="gene_mouth_height" id="gene_mouth_height_current">
+                        <option value="0">mouth_height_neg</option>
+                        <option value="1">mouth_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_height" min="0" max="255">
+                    <select name="gene_mouth_height" id="gene_mouth_height_inherit">
+                        <option value="0">mouth_height_neg</option>
+                        <option value="1">mouth_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_mouth_width">gene_mouth_width</label>
+                    <select name="gene_mouth_width" id="gene_mouth_width_current">
+                        <option value="0">mouth_width_neg</option>
+                        <option value="1">mouth_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_width" min="0" max="255">
+                    <select name="gene_mouth_width" id="gene_mouth_width_inherit">
+                        <option value="0">mouth_width_neg</option>
+                        <option value="1">mouth_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_mouth_upper_lip_size">gene_mouth_upper_lip_size</label>
+                    <select name="gene_mouth_upper_lip_size" id="gene_mouth_upper_lip_size_current">
+                        <option value="0">mouth_upper_lip_size_neg</option>
+                        <option value="1">mouth_upper_lip_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_upper_lip_size" min="0" max="255">
+                    <select name="gene_mouth_upper_lip_size" id="gene_mouth_upper_lip_size_inherit">
+                        <option value="0">mouth_upper_lip_size_neg</option>
+                        <option value="1">mouth_upper_lip_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_upper_lip_size" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_mouth_lower_lip_size">gene_mouth_lower_lip_size</label>
+                    <select name="gene_mouth_lower_lip_size" id="gene_mouth_lower_lip_size_current">
+                        <option value="0">mouth_lower_lip_size_neg</option>
+                        <option value="1">mouth_lower_lip_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_lower_lip_size" min="0" max="255">
+                    <select name="gene_mouth_lower_lip_size" id="gene_mouth_lower_lip_size_inherit">
+                        <option value="0">mouth_lower_lip_size_neg</option>
+                        <option value="1">mouth_lower_lip_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_lower_lip_size" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_mouth_open">gene_mouth_open</label>
+                    <select name="gene_mouth_open" id="gene_mouth_open_current">
+                        <option value="0">mouth_open_neg</option>
+                        <option value="1">mouth_open_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_open" min="0" max="255">
+                    <select name="gene_mouth_open" id="gene_mouth_open_inherit">
+                        <option value="0">mouth_open_neg</option>
+                        <option value="1">mouth_open_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_mouth_open" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_neck_length">gene_neck_length</label>
+                    <select name="gene_neck_length" id="gene_neck_length_current">
+                        <option value="0">neck_length_neg</option>
+                        <option value="1">neck_length_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_neck_length" min="0" max="255">
+                    <select name="gene_neck_length" id="gene_neck_length_inherit">
+                        <option value="0">neck_length_neg</option>
+                        <option value="1">neck_length_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_neck_length" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_neck_width">gene_neck_width</label>
+                    <select name="gene_neck_width" id="gene_neck_width_current">
+                        <option value="0">neck_width_neg</option>
+                        <option value="1">neck_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_neck_width" min="0" max="255">
+                    <select name="gene_neck_width" id="gene_neck_width_inherit">
+                        <option value="0">neck_width_neg</option>
+                        <option value="1">neck_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_neck_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_cheek_forward">gene_bs_cheek_forward</label>
+                    <select name="gene_bs_cheek_forward" id="gene_bs_cheek_forward_current">
+                        <option value="0">cheek_forward_neg</option>
+                        <option value="1">cheek_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_cheek_forward" min="0" max="255">
+                    <select name="gene_bs_cheek_forward" id="gene_bs_cheek_forward_inherit">
+                        <option value="0">cheek_forward_neg</option>
+                        <option value="1">cheek_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_cheek_forward" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_cheek_height">gene_bs_cheek_height</label>
+                    <select name="gene_bs_cheek_height" id="gene_bs_cheek_height_current">
+                        <option value="0">cheek_height_neg</option>
+                        <option value="1">cheek_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_cheek_height" min="0" max="255">
+                    <select name="gene_bs_cheek_height" id="gene_bs_cheek_height_inherit">
+                        <option value="0">cheek_height_neg</option>
+                        <option value="1">cheek_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_cheek_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_cheek_width">gene_bs_cheek_width</label>
+                    <select name="gene_bs_cheek_width" id="gene_bs_cheek_width_current">
+                        <option value="0">cheek_width_neg</option>
+                        <option value="1">cheek_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_cheek_width" min="0" max="255">
+                    <select name="gene_bs_cheek_width" id="gene_bs_cheek_width_inherit">
+                        <option value="0">cheek_width_neg</option>
+                        <option value="1">cheek_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_cheek_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_ear_angle">gene_bs_ear_angle</label>
+                    <select name="gene_bs_ear_angle" id="gene_bs_ear_angle_current">
+                        <option value="0">ear_angle_neg</option>
+                        <option value="1">ear_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_angle" min="0" max="255">
+                    <select name="gene_bs_ear_angle" id="gene_bs_ear_angle_inherit">
+                        <option value="0">ear_angle_neg</option>
+                        <option value="1">ear_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_angle" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_ear_inner_shape">gene_bs_ear_inner_shape</label>
+                    <select name="gene_bs_ear_inner_shape" id="gene_bs_ear_inner_shape_current">
+                        <option value="0">ear_inner_shape_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_inner_shape" min="0" max="255">
+                    <select name="gene_bs_ear_inner_shape" id="gene_bs_ear_inner_shape_inherit">
+                        <option value="0">ear_inner_shape_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_inner_shape" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_ear_bend">gene_bs_ear_bend</label>
+                    <select name="gene_bs_ear_bend" id="gene_bs_ear_bend_current">
+                        <option value="0">ear_lower_bend_pos</option>
+                        <option value="1">ear_upper_bend_pos</option>
+                        <option value="2">ear_both_bend_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_bend" min="0" max="255">
+                    <select name="gene_bs_ear_bend" id="gene_bs_ear_bend_inherit">
+                        <option value="0">ear_lower_bend_pos</option>
+                        <option value="1">ear_upper_bend_pos</option>
+                        <option value="2">ear_both_bend_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_bend" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_ear_outward">gene_bs_ear_outward</label>
+                    <select name="gene_bs_ear_outward" id="gene_bs_ear_outward_current">
+                        <option value="0">ear_outward_neg</option>
+                        <option value="1">ear_outward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_outward" min="0" max="255">
+                    <select name="gene_bs_ear_outward" id="gene_bs_ear_outward_inherit">
+                        <option value="0">ear_outward_neg</option>
+                        <option value="1">ear_outward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_outward" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_ear_size">gene_bs_ear_size</label>
+                    <select name="gene_bs_ear_size" id="gene_bs_ear_size_current">
+                        <option value="0">ear_size_neg</option>
+                        <option value="1">ear_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_size" min="0" max="255">
+                    <select name="gene_bs_ear_size" id="gene_bs_ear_size_inherit">
+                        <option value="0">ear_size_neg</option>
+                        <option value="1">ear_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_ear_size" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_eye_corner_depth">gene_bs_eye_corner_depth</label>
+                    <select name="gene_bs_eye_corner_depth" id="gene_bs_eye_corner_depth_current">
+                        <option value="0">eye_corner_depth_neg</option>
+                        <option value="1">eye_corner_depth_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_eye_corner_depth" min="0" max="255">
+                    <select name="gene_bs_eye_corner_depth" id="gene_bs_eye_corner_depth_inherit">
+                        <option value="0">eye_corner_depth_neg</option>
+                        <option value="1">eye_corner_depth_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_eye_corner_depth" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_eye_fold_shape">gene_bs_eye_fold_shape</label>
+                    <select name="gene_bs_eye_fold_shape" id="gene_bs_eye_fold_shape_current">
+                        <option value="0">eye_fold_shape_neg</option>
+                        <option value="1">eye_fold_shape_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_eye_fold_shape" min="0" max="255">
+                    <select name="gene_bs_eye_fold_shape" id="gene_bs_eye_fold_shape_inherit">
+                        <option value="0">eye_fold_shape_neg</option>
+                        <option value="1">eye_fold_shape_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_eye_fold_shape" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_eye_size">gene_bs_eye_size</label>
+                    <select name="gene_bs_eye_size" id="gene_bs_eye_size_current">
+                        <option value="0">eye_size_neg</option>
+                        <option value="1">eye_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_eye_size" min="0" max="255">
+                    <select name="gene_bs_eye_size" id="gene_bs_eye_size_inherit">
+                        <option value="0">eye_size_neg</option>
+                        <option value="1">eye_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_eye_size" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_eye_upper_lid_size">gene_bs_eye_upper_lid_size</label>
+                    <select name="gene_bs_eye_upper_lid_size" id="gene_bs_eye_upper_lid_size_current">
+                        <option value="0">eye_upper_lid_size_neg</option>
+                        <option value="1">eye_upper_lid_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_eye_upper_lid_size" min="0" max="255">
+                    <select name="gene_bs_eye_upper_lid_size" id="gene_bs_eye_upper_lid_size_inherit">
+                        <option value="0">eye_upper_lid_size_neg</option>
+                        <option value="1">eye_upper_lid_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_eye_upper_lid_size" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_forehead_brow_curve">gene_bs_forehead_brow_curve</label>
+                    <select name="gene_bs_forehead_brow_curve" id="gene_bs_forehead_brow_curve_current">
+                        <option value="0">forehead_brow_curve_neg</option>
+                        <option value="1">forehead_brow_curve_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_curve" min="0" max="255">
+                    <select name="gene_bs_forehead_brow_curve" id="gene_bs_forehead_brow_curve_inherit">
+                        <option value="0">forehead_brow_curve_neg</option>
+                        <option value="1">forehead_brow_curve_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_curve" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_forehead_brow_forward">gene_bs_forehead_brow_forward</label>
+                    <select name="gene_bs_forehead_brow_forward" id="gene_bs_forehead_brow_forward_current">
+                        <option value="0">forehead_brow_forward_neg</option>
+                        <option value="1">forehead_brow_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_forward" min="0" max="255">
+                    <select name="gene_bs_forehead_brow_forward" id="gene_bs_forehead_brow_forward_inherit">
+                        <option value="0">forehead_brow_forward_neg</option>
+                        <option value="1">forehead_brow_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_forward" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_forehead_brow_inner_height">gene_bs_forehead_brow_inner_height</label>
+                    <select name="gene_bs_forehead_brow_inner_height" id="gene_bs_forehead_brow_inner_height_current">
+                        <option value="0">forehead_brow_inner_height_neg</option>
+                        <option value="1">forehead_brow_inner_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_inner_height" min="0" max="255">
+                    <select name="gene_bs_forehead_brow_inner_height" id="gene_bs_forehead_brow_inner_height_inherit">
+                        <option value="0">forehead_brow_inner_height_neg</option>
+                        <option value="1">forehead_brow_inner_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_inner_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_forehead_brow_outer_height">gene_bs_forehead_brow_outer_height</label>
+                    <select name="gene_bs_forehead_brow_outer_height" id="gene_bs_forehead_brow_outer_height_current">
+                        <option value="0">forehead_brow_outer_height_neg</option>
+                        <option value="1">forehead_brow_outer_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_outer_height" min="0" max="255">
+                    <select name="gene_bs_forehead_brow_outer_height" id="gene_bs_forehead_brow_outer_height_inherit">
+                        <option value="0">forehead_brow_outer_height_neg</option>
+                        <option value="1">forehead_brow_outer_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_outer_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_forehead_brow_width">gene_bs_forehead_brow_width</label>
+                    <select name="gene_bs_forehead_brow_width" id="gene_bs_forehead_brow_width_current">
+                        <option value="0">forehead_brow_width_neg</option>
+                        <option value="1">forehead_brow_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_width" min="0" max="255">
+                    <select name="gene_bs_forehead_brow_width" id="gene_bs_forehead_brow_width_inherit">
+                        <option value="0">forehead_brow_width_neg</option>
+                        <option value="1">forehead_brow_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_forehead_brow_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_jaw_def">gene_bs_jaw_def</label>
+                    <select name="gene_bs_jaw_def" id="gene_bs_jaw_def_current">
+                        <option value="0">jaw_def_neg</option>
+                        <option value="1">jaw_def_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_jaw_def" min="0" max="255">
+                    <select name="gene_bs_jaw_def" id="gene_bs_jaw_def_inherit">
+                        <option value="0">jaw_def_neg</option>
+                        <option value="1">jaw_def_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_jaw_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_lower_lip_def">gene_bs_mouth_lower_lip_def</label>
+                    <select name="gene_bs_mouth_lower_lip_def" id="gene_bs_mouth_lower_lip_def_current">
+                        <option value="0">mouth_lower_lip_def_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_lower_lip_def" min="0" max="255">
+                    <select name="gene_bs_mouth_lower_lip_def" id="gene_bs_mouth_lower_lip_def_inherit">
+                        <option value="0">mouth_lower_lip_def_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_lower_lip_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_lower_lip_full">gene_bs_mouth_lower_lip_full</label>
+                    <select name="gene_bs_mouth_lower_lip_full" id="gene_bs_mouth_lower_lip_full_current">
+                        <option value="0">mouth_lower_lip_full_neg</option>
+                        <option value="1">mouth_lower_lip_full_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_lower_lip_full" min="0" max="255">
+                    <select name="gene_bs_mouth_lower_lip_full" id="gene_bs_mouth_lower_lip_full_inherit">
+                        <option value="0">mouth_lower_lip_full_neg</option>
+                        <option value="1">mouth_lower_lip_full_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_lower_lip_full" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_lower_lip_pad">gene_bs_mouth_lower_lip_pad</label>
+                    <select name="gene_bs_mouth_lower_lip_pad" id="gene_bs_mouth_lower_lip_pad_current">
+                        <option value="0">mouth_lower_lip_pad_neg</option>
+                        <option value="1">mouth_lower_lip_pad_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_lower_lip_pad" min="0" max="255">
+                    <select name="gene_bs_mouth_lower_lip_pad" id="gene_bs_mouth_lower_lip_pad_inherit">
+                        <option value="0">mouth_lower_lip_pad_neg</option>
+                        <option value="1">mouth_lower_lip_pad_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_lower_lip_pad" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_lower_lip_width">gene_bs_mouth_lower_lip_width</label>
+                    <select name="gene_bs_mouth_lower_lip_width" id="gene_bs_mouth_lower_lip_width_current">
+                        <option value="0">mouth_lower_lip_width_neg</option>
+                        <option value="1">mouth_lower_lip_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_lower_lip_width" min="0" max="255">
+                    <select name="gene_bs_mouth_lower_lip_width" id="gene_bs_mouth_lower_lip_width_inherit">
+                        <option value="0">mouth_lower_lip_width_neg</option>
+                        <option value="1">mouth_lower_lip_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_lower_lip_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_philtrum_def">gene_bs_mouth_philtrum_def</label>
+                    <select name="gene_bs_mouth_philtrum_def" id="gene_bs_mouth_philtrum_def_current">
+                        <option value="0">mouth_philtrum_def_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_philtrum_def" min="0" max="255">
+                    <select name="gene_bs_mouth_philtrum_def" id="gene_bs_mouth_philtrum_def_inherit">
+                        <option value="0">mouth_philtrum_def_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_philtrum_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_philtrum_shape">gene_bs_mouth_philtrum_shape</label>
+                    <select name="gene_bs_mouth_philtrum_shape" id="gene_bs_mouth_philtrum_shape_current">
+                        <option value="0">mouth_philtrum_shape_neg</option>
+                        <option value="1">mouth_philtrum_shape_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_philtrum_shape" min="0" max="255">
+                    <select name="gene_bs_mouth_philtrum_shape" id="gene_bs_mouth_philtrum_shape_inherit">
+                        <option value="0">mouth_philtrum_shape_neg</option>
+                        <option value="1">mouth_philtrum_shape_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_philtrum_shape" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_philtrum_width">gene_bs_mouth_philtrum_width</label>
+                    <select name="gene_bs_mouth_philtrum_width" id="gene_bs_mouth_philtrum_width_current">
+                        <option value="0">mouth_philtrum_width_neg</option>
+                        <option value="1">mouth_philtrum_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_philtrum_width" min="0" max="255">
+                    <select name="gene_bs_mouth_philtrum_width" id="gene_bs_mouth_philtrum_width_inherit">
+                        <option value="0">mouth_philtrum_width_neg</option>
+                        <option value="1">mouth_philtrum_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_philtrum_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_upper_lip_def">gene_bs_mouth_upper_lip_def</label>
+                    <select name="gene_bs_mouth_upper_lip_def" id="gene_bs_mouth_upper_lip_def_current">
+                        <option value="0">mouth_upper_lip_def_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_upper_lip_def" min="0" max="255">
+                    <select name="gene_bs_mouth_upper_lip_def" id="gene_bs_mouth_upper_lip_def_inherit">
+                        <option value="0">mouth_upper_lip_def_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_upper_lip_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_upper_lip_full">gene_bs_mouth_upper_lip_full</label>
+                    <select name="gene_bs_mouth_upper_lip_full" id="gene_bs_mouth_upper_lip_full_current">
+                        <option value="0">mouth_upper_lip_full_neg</option>
+                        <option value="1">mouth_upper_lip_full_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_upper_lip_full" min="0" max="255">
+                    <select name="gene_bs_mouth_upper_lip_full" id="gene_bs_mouth_upper_lip_full_inherit">
+                        <option value="0">mouth_upper_lip_full_neg</option>
+                        <option value="1">mouth_upper_lip_full_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_upper_lip_full" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_upper_lip_profile">gene_bs_mouth_upper_lip_profile</label>
+                    <select name="gene_bs_mouth_upper_lip_profile" id="gene_bs_mouth_upper_lip_profile_current">
+                        <option value="0">mouth_upper_lip_profile_neg</option>
+                        <option value="1">mouth_upper_lip_profile_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_upper_lip_profile" min="0" max="255">
+                    <select name="gene_bs_mouth_upper_lip_profile" id="gene_bs_mouth_upper_lip_profile_inherit">
+                        <option value="0">mouth_upper_lip_profile_neg</option>
+                        <option value="1">mouth_upper_lip_profile_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_upper_lip_profile" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_mouth_upper_lip_width">gene_bs_mouth_upper_lip_width</label>
+                    <select name="gene_bs_mouth_upper_lip_width" id="gene_bs_mouth_upper_lip_width_current">
+                        <option value="0">mouth_upper_lip_width_neg</option>
+                        <option value="1">mouth_upper_lip_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_upper_lip_width" min="0" max="255">
+                    <select name="gene_bs_mouth_upper_lip_width" id="gene_bs_mouth_upper_lip_width_inherit">
+                        <option value="0">mouth_upper_lip_width_neg</option>
+                        <option value="1">mouth_upper_lip_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_mouth_upper_lip_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_forward">gene_bs_nose_forward</label>
+                    <select name="gene_bs_nose_forward" id="gene_bs_nose_forward_current">
+                        <option value="0">nose_forward_neg</option>
+                        <option value="1">nose_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_forward" min="0" max="255">
+                    <select name="gene_bs_nose_forward" id="gene_bs_nose_forward_inherit">
+                        <option value="0">nose_forward_neg</option>
+                        <option value="1">nose_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_forward" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_height">gene_bs_nose_height</label>
+                    <select name="gene_bs_nose_height" id="gene_bs_nose_height_current">
+                        <option value="0">nose_height_neg</option>
+                        <option value="1">nose_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_height" min="0" max="255">
+                    <select name="gene_bs_nose_height" id="gene_bs_nose_height_inherit">
+                        <option value="0">nose_height_neg</option>
+                        <option value="1">nose_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_length">gene_bs_nose_length</label>
+                    <select name="gene_bs_nose_length" id="gene_bs_nose_length_current">
+                        <option value="0">nose_length_neg</option>
+                        <option value="1">nose_length_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_length" min="0" max="255">
+                    <select name="gene_bs_nose_length" id="gene_bs_nose_length_inherit">
+                        <option value="0">nose_length_neg</option>
+                        <option value="1">nose_length_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_length" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_nostril_height">gene_bs_nose_nostril_height</label>
+                    <select name="gene_bs_nose_nostril_height" id="gene_bs_nose_nostril_height_current">
+                        <option value="0">nose_nostril_height_neg</option>
+                        <option value="1">nose_nostril_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_nostril_height" min="0" max="255">
+                    <select name="gene_bs_nose_nostril_height" id="gene_bs_nose_nostril_height_inherit">
+                        <option value="0">nose_nostril_height_neg</option>
+                        <option value="1">nose_nostril_height_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_nostril_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_nostril_width">gene_bs_nose_nostril_width</label>
+                    <select name="gene_bs_nose_nostril_width" id="gene_bs_nose_nostril_width_current">
+                        <option value="0">nose_nostril_width_neg</option>
+                        <option value="1">nose_nostril_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_nostril_width" min="0" max="255">
+                    <select name="gene_bs_nose_nostril_width" id="gene_bs_nose_nostril_width_inherit">
+                        <option value="0">nose_nostril_width_neg</option>
+                        <option value="1">nose_nostril_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_nostril_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_profile">gene_bs_nose_profile</label>
+                    <select name="gene_bs_nose_profile" id="gene_bs_nose_profile_current">
+                        <option value="0">nose_profile_neg</option>
+                        <option value="1">nose_profile_pos</option>
+                        <option value="2">nose_profile_hawk</option>
+                        <option value="3">nose_profile_hawk_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_profile" min="0" max="255">
+                    <select name="gene_bs_nose_profile" id="gene_bs_nose_profile_inherit">
+                        <option value="0">nose_profile_neg</option>
+                        <option value="1">nose_profile_pos</option>
+                        <option value="2">nose_profile_hawk</option>
+                        <option value="3">nose_profile_hawk_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_profile" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_ridge_angle">gene_bs_nose_ridge_angle</label>
+                    <select name="gene_bs_nose_ridge_angle" id="gene_bs_nose_ridge_angle_current">
+                        <option value="0">nose_ridge_angle_neg</option>
+                        <option value="1">nose_ridge_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_ridge_angle" min="0" max="255">
+                    <select name="gene_bs_nose_ridge_angle" id="gene_bs_nose_ridge_angle_inherit">
+                        <option value="0">nose_ridge_angle_neg</option>
+                        <option value="1">nose_ridge_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_ridge_angle" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_ridge_width">gene_bs_nose_ridge_width</label>
+                    <select name="gene_bs_nose_ridge_width" id="gene_bs_nose_ridge_width_current">
+                        <option value="0">nose_ridge_width_neg</option>
+                        <option value="1">nose_ridge_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_ridge_width" min="0" max="255">
+                    <select name="gene_bs_nose_ridge_width" id="gene_bs_nose_ridge_width_inherit">
+                        <option value="0">nose_ridge_width_neg</option>
+                        <option value="1">nose_ridge_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_ridge_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_size">gene_bs_nose_size</label>
+                    <select name="gene_bs_nose_size" id="gene_bs_nose_size_current">
+                        <option value="0">nose_size_neg</option>
+                        <option value="1">nose_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_size" min="0" max="255">
+                    <select name="gene_bs_nose_size" id="gene_bs_nose_size_inherit">
+                        <option value="0">nose_size_neg</option>
+                        <option value="1">nose_size_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_size" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_tip_angle">gene_bs_nose_tip_angle</label>
+                    <select name="gene_bs_nose_tip_angle" id="gene_bs_nose_tip_angle_current">
+                        <option value="0">nose_tip_angle_neg</option>
+                        <option value="1">nose_tip_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_tip_angle" min="0" max="255">
+                    <select name="gene_bs_nose_tip_angle" id="gene_bs_nose_tip_angle_inherit">
+                        <option value="0">nose_tip_angle_neg</option>
+                        <option value="1">nose_tip_angle_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_tip_angle" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_tip_forward">gene_bs_nose_tip_forward</label>
+                    <select name="gene_bs_nose_tip_forward" id="gene_bs_nose_tip_forward_current">
+                        <option value="0">nose_tip_forward_neg</option>
+                        <option value="1">nose_tip_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_tip_forward" min="0" max="255">
+                    <select name="gene_bs_nose_tip_forward" id="gene_bs_nose_tip_forward_inherit">
+                        <option value="0">nose_tip_forward_neg</option>
+                        <option value="1">nose_tip_forward_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_tip_forward" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_nose_tip_width">gene_bs_nose_tip_width</label>
+                    <select name="gene_bs_nose_tip_width" id="gene_bs_nose_tip_width_current">
+                        <option value="0">nose_tip_width_neg</option>
+                        <option value="1">nose_tip_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_tip_width" min="0" max="255">
+                    <select name="gene_bs_nose_tip_width" id="gene_bs_nose_tip_width_inherit">
+                        <option value="0">nose_tip_width_neg</option>
+                        <option value="1">nose_tip_width_pos</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_nose_tip_width" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_cheek_def">face_detail_cheek_def</label>
+                    <select name="face_detail_cheek_def" id="face_detail_cheek_def_current">
+                        <option value="0">cheek_def_01</option>
+                        <option value="1">cheek_def_02</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_cheek_def" min="0" max="255">
+                    <select name="face_detail_cheek_def" id="face_detail_cheek_def_inherit">
+                        <option value="0">cheek_def_01</option>
+                        <option value="1">cheek_def_02</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_cheek_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_cheek_fat">face_detail_cheek_fat</label>
+                    <select name="face_detail_cheek_fat" id="face_detail_cheek_fat_current">
+                        <option value="0">cheek_fat_01_pos</option>
+                        <option value="1">cheek_fat_02_pos</option>
+                        <option value="2">cheek_fat_03_pos</option>
+                        <option value="3">cheek_fat_04_pos</option>
+                        <option value="4">cheek_fat_01_neg</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_cheek_fat" min="0" max="255">
+                    <select name="face_detail_cheek_fat" id="face_detail_cheek_fat_inherit">
+                        <option value="0">cheek_fat_01_pos</option>
+                        <option value="1">cheek_fat_02_pos</option>
+                        <option value="2">cheek_fat_03_pos</option>
+                        <option value="3">cheek_fat_04_pos</option>
+                        <option value="4">cheek_fat_01_neg</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_cheek_fat" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_chin_cleft">face_detail_chin_cleft</label>
+                    <select name="face_detail_chin_cleft" id="face_detail_chin_cleft_current">
+                        <option value="0">chin_cleft</option>
+                        <option value="1">chin_dimple</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_chin_cleft" min="0" max="255">
+                    <select name="face_detail_chin_cleft" id="face_detail_chin_cleft_inherit">
+                        <option value="0">chin_cleft</option>
+                        <option value="1">chin_dimple</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_chin_cleft" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_chin_def">face_detail_chin_def</label>
+                    <select name="face_detail_chin_def" id="face_detail_chin_def_current">
+                        <option value="0">chin_def</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_chin_def" min="0" max="255">
+                    <select name="face_detail_chin_def" id="face_detail_chin_def_inherit">
+                        <option value="0">chin_def</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_chin_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_eye_lower_lid_def">face_detail_eye_lower_lid_def</label>
+                    <select name="face_detail_eye_lower_lid_def" id="face_detail_eye_lower_lid_def_current">
+                        <option value="0">eye_lower_lid_def</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_eye_lower_lid_def" min="0" max="255">
+                    <select name="face_detail_eye_lower_lid_def" id="face_detail_eye_lower_lid_def_inherit">
+                        <option value="0">eye_lower_lid_def</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_eye_lower_lid_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_eye_socket">face_detail_eye_socket</label>
+                    <select name="face_detail_eye_socket" id="face_detail_eye_socket_current">
+                        <option value="0">eye_socket_01</option>
+                        <option value="1">eye_socket_02</option>
+                        <option value="2">eye_socket_03</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_eye_socket" min="0" max="255">
+                    <select name="face_detail_eye_socket" id="face_detail_eye_socket_inherit">
+                        <option value="0">eye_socket_01</option>
+                        <option value="1">eye_socket_02</option>
+                        <option value="2">eye_socket_03</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_eye_socket" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_nasolabial">face_detail_nasolabial</label>
+                    <select name="face_detail_nasolabial" id="face_detail_nasolabial_current">
+                        <option value="0">nasolabial_01</option>
+                        <option value="1">nasolabial_02</option>
+                        <option value="2">nasolabial_03</option>
+                        <option value="3">nasolabial_04</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_nasolabial" min="0" max="255">
+                    <select name="face_detail_nasolabial" id="face_detail_nasolabial_inherit">
+                        <option value="0">nasolabial_01</option>
+                        <option value="1">nasolabial_02</option>
+                        <option value="2">nasolabial_03</option>
+                        <option value="3">nasolabial_04</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_nasolabial" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_nose_ridge_def">face_detail_nose_ridge_def</label>
+                    <select name="face_detail_nose_ridge_def" id="face_detail_nose_ridge_def_current">
+                        <option value="0">nose_ridge_def_pos</option>
+                        <option value="1">nose_ridge_def_neg</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_nose_ridge_def" min="0" max="255">
+                    <select name="face_detail_nose_ridge_def" id="face_detail_nose_ridge_def_inherit">
+                        <option value="0">nose_ridge_def_pos</option>
+                        <option value="1">nose_ridge_def_neg</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_nose_ridge_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_nose_tip_def">face_detail_nose_tip_def</label>
+                    <select name="face_detail_nose_tip_def" id="face_detail_nose_tip_def_current">
+                        <option value="0">nose_tip_def</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_nose_tip_def" min="0" max="255">
+                    <select name="face_detail_nose_tip_def" id="face_detail_nose_tip_def_inherit">
+                        <option value="0">nose_tip_def</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_nose_tip_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="face_detail_temple_def">face_detail_temple_def</label>
+                    <select name="face_detail_temple_def" id="face_detail_temple_def_current">
+                        <option value="0">temple_def</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_temple_def" min="0" max="255">
+                    <select name="face_detail_temple_def" id="face_detail_temple_def_inherit">
+                        <option value="0">temple_def</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="face_detail_temple_def" min="0" max="255">
+                </div>
+                <div>
+                    <label for="expression_brow_wrinkles">expression_brow_wrinkles</label>
+                    <select name="expression_brow_wrinkles" id="expression_brow_wrinkles_current">
+                        <option value="0">brow_wrinkles_01</option>
+                        <option value="1">brow_wrinkles_02</option>
+                        <option value="2">brow_wrinkles_03</option>
+                        <option value="3">brow_wrinkles_04</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="expression_brow_wrinkles" min="0" max="255">
+                    <select name="expression_brow_wrinkles" id="expression_brow_wrinkles_inherit">
+                        <option value="0">brow_wrinkles_01</option>
+                        <option value="1">brow_wrinkles_02</option>
+                        <option value="2">brow_wrinkles_03</option>
+                        <option value="3">brow_wrinkles_04</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="expression_brow_wrinkles" min="0" max="255">
+                </div>
+                <div>
+                    <label for="expression_eye_wrinkles">expression_eye_wrinkles</label>
+                    <select name="expression_eye_wrinkles" id="expression_eye_wrinkles_current">
+                        <option value="0">eye_wrinkles_01</option>
+                        <option value="1">eye_wrinkles_02</option>
+                        <option value="2">eye_wrinkles_03</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="expression_eye_wrinkles" min="0" max="255">
+                    <select name="expression_eye_wrinkles" id="expression_eye_wrinkles_inherit">
+                        <option value="0">eye_wrinkles_01</option>
+                        <option value="1">eye_wrinkles_02</option>
+                        <option value="2">eye_wrinkles_03</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="expression_eye_wrinkles" min="0" max="255">
+                </div>
+                <div>
+                    <label for="expression_forehead_wrinkles">expression_forehead_wrinkles</label>
+                    <select name="expression_forehead_wrinkles" id="expression_forehead_wrinkles_current">
+                        <option value="0">forehead_wrinkles_01</option>
+                        <option value="1">forehead_wrinkles_02</option>
+                        <option value="2">forehead_wrinkles_03</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="expression_forehead_wrinkles" min="0" max="255">
+                    <select name="expression_forehead_wrinkles" id="expression_forehead_wrinkles_inherit">
+                        <option value="0">forehead_wrinkles_01</option>
+                        <option value="1">forehead_wrinkles_02</option>
+                        <option value="2">forehead_wrinkles_03</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="expression_forehead_wrinkles" min="0" max="255">
+                </div>
+                <div>
+                    <label for="expression_other">expression_other</label>
+                    <select name="expression_other" id="expression_other_current">
+                        <option value="0">cheek_wrinkles_left_01</option>
+                        <option value="1">cheek_wrinkles_right_01</option>
+                        <option value="2">cheek_wrinkles_both_01</option>
+                        <option value="3">nose_wrinkles_01</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="expression_other" min="0" max="255">
+                    <select name="expression_other" id="expression_other_inherit">
+                        <option value="0">cheek_wrinkles_left_01</option>
+                        <option value="1">cheek_wrinkles_right_01</option>
+                        <option value="2">cheek_wrinkles_both_01</option>
+                        <option value="3">nose_wrinkles_01</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="expression_other" min="0" max="255">
+                </div>
+                <div>
+                    <label for="complexion">complexion</label>
+                    <select name="complexion" id="complexion_current">
+                        <option value="0">complexion_1</option>
+                        <option value="1">complexion_2</option>
+                        <option value="2">complexion_3</option>
+                        <option value="3">complexion_4</option>
+                        <option value="4">complexion_5</option>
+                        <option value="5">complexion_6</option>
+                        <option value="6">complexion_7</option>
+                        <option value="7">complexion_beauty_1</option>
+                        <option value="8">complexion_ugly_1</option>
+                        <option value="9">complexion_no_face</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="complexion" min="0" max="255">
+                    <select name="complexion" id="complexion_inherit">
+                        <option value="0">complexion_1</option>
+                        <option value="1">complexion_2</option>
+                        <option value="2">complexion_3</option>
+                        <option value="3">complexion_4</option>
+                        <option value="4">complexion_5</option>
+                        <option value="5">complexion_6</option>
+                        <option value="6">complexion_7</option>
+                        <option value="7">complexion_beauty_1</option>
+                        <option value="8">complexion_ugly_1</option>
+                        <option value="9">complexion_no_face</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="complexion" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_height">gene_height</label>
+                    <select name="gene_height" id="gene_height_current">
+                        <option value="0">full_height</option>
+                        <option value="1">normal_height</option>
+                        <option value="2">dwarf_height</option>
+                        <option value="3">giant_height</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_height" min="0" max="255">
+                    <select name="gene_height" id="gene_height_inherit">
+                        <option value="0">full_height</option>
+                        <option value="1">normal_height</option>
+                        <option value="2">dwarf_height</option>
+                        <option value="3">giant_height</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_height" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_body_type">gene_bs_body_type</label>
+                    <select name="gene_bs_body_type" id="gene_bs_body_type_current">
+                        <option value="0">body_average</option>
+                        <option value="1">body_fat_head_fat_low</option>
+                        <option value="2">body_fat_head_fat_medium</option>
+                        <option value="3">body_fat_head_fat_full</option>
+                        <option value="4">no_portrait</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_body_type" min="0" max="255">
+                    <select name="gene_bs_body_type" id="gene_bs_body_type_inherit">
+                        <option value="0">body_average</option>
+                        <option value="1">body_fat_head_fat_low</option>
+                        <option value="2">body_fat_head_fat_medium</option>
+                        <option value="3">body_fat_head_fat_full</option>
+                        <option value="4">no_portrait</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_body_type" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_body_shape">gene_bs_body_shape</label>
+                    <select name="gene_bs_body_shape" id="gene_bs_body_shape_current">
+                        <option value="0">body_shape_average_clothed</option>
+                        <option value="1">body_shape_average</option>
+                        <option value="2">body_shape_apple_half</option>
+                        <option value="3">body_shape_apple_full</option>
+                        <option value="4">body_shape_hourglass_half</option>
+                        <option value="5">body_shape_hourglass_full</option>
+                        <option value="6">body_shape_pear_half</option>
+                        <option value="7">body_shape_pear_full</option>
+                        <option value="8">body_shape_rectangle_half</option>
+                        <option value="9">body_shape_rectangle_full</option>
+                        <option value="10">body_shape_triangle_half</option>
+                        <option value="11">body_shape_triangle_full</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_body_shape" min="0" max="255">
+                    <select name="gene_bs_body_shape" id="gene_bs_body_shape_inherit">
+                        <option value="0">body_shape_average_clothed</option>
+                        <option value="1">body_shape_average</option>
+                        <option value="2">body_shape_apple_half</option>
+                        <option value="3">body_shape_apple_full</option>
+                        <option value="4">body_shape_hourglass_half</option>
+                        <option value="5">body_shape_hourglass_full</option>
+                        <option value="6">body_shape_pear_half</option>
+                        <option value="7">body_shape_pear_full</option>
+                        <option value="8">body_shape_rectangle_half</option>
+                        <option value="9">body_shape_rectangle_full</option>
+                        <option value="10">body_shape_triangle_half</option>
+                        <option value="11">body_shape_triangle_full</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_body_shape" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_bs_bust">gene_bs_bust</label>
+                    <select name="gene_bs_bust" id="gene_bs_bust_current">
+                        <option value="0">bust_clothes</option>
+                        <option value="1">bust_default</option>
+                        <option value="2">bust_shape_1_half</option>
+                        <option value="3">bust_shape_1_full</option>
+                        <option value="4">bust_shape_2_half</option>
+                        <option value="5">bust_shape_2_full</option>
+                        <option value="6">bust_shape_3_half</option>
+                        <option value="7">bust_shape_3_full</option>
+                        <option value="8">bust_shape_4_half</option>
+                        <option value="9">bust_shape_4_full</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_bust" min="0" max="255">
+                    <select name="gene_bs_bust" id="gene_bs_bust_inherit">
+                        <option value="0">bust_clothes</option>
+                        <option value="1">bust_default</option>
+                        <option value="2">bust_shape_1_half</option>
+                        <option value="3">bust_shape_1_full</option>
+                        <option value="4">bust_shape_2_half</option>
+                        <option value="5">bust_shape_2_full</option>
+                        <option value="6">bust_shape_3_half</option>
+                        <option value="7">bust_shape_3_full</option>
+                        <option value="8">bust_shape_4_half</option>
+                        <option value="9">bust_shape_4_full</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_bs_bust" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_age">gene_age</label>
+                    <select name="gene_age" id="gene_age_current">
+                        <option value="0">old_1</option>
+                        <option value="1">old_2</option>
+                        <option value="2">old_3</option>
+                        <option value="3">old_4</option>
+                        <option value="4">old_beauty_1</option>
+                        <option value="5">no_aging</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_age" min="0" max="255">
+                    <select name="gene_age" id="gene_age_inherit">
+                        <option value="0">old_1</option>
+                        <option value="1">old_2</option>
+                        <option value="2">old_3</option>
+                        <option value="3">old_4</option>
+                        <option value="4">old_beauty_1</option>
+                        <option value="5">no_aging</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_age" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_eyebrows_shape">gene_eyebrows_shape</label>
+                    <select name="gene_eyebrows_shape" id="gene_eyebrows_shape_current">
+                        <option value="0">no_eyebrows</option>
+                        <option value="1">avg_spacing_avg_thickness</option>
+                        <option value="2">avg_spacing_high_thickness</option>
+                        <option value="3">avg_spacing_low_thickness</option>
+                        <option value="4">avg_spacing_lower_thickness</option>
+                        <option value="5">far_spacing_avg_thickness</option>
+                        <option value="6">far_spacing_high_thickness</option>
+                        <option value="7">far_spacing_low_thickness</option>
+                        <option value="8">far_spacing_lower_thickness</option>
+                        <option value="9">close_spacing_avg_thickness</option>
+                        <option value="10">close_spacing_high_thickness</option>
+                        <option value="11">close_spacing_low_thickness</option>
+                        <option value="12">close_spacing_lower_thickness</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eyebrows_shape" min="0" max="255">
+                    <select name="gene_eyebrows_shape" id="gene_eyebrows_shape_inherit">
+                        <option value="0">no_eyebrows</option>
+                        <option value="1">avg_spacing_avg_thickness</option>
+                        <option value="2">avg_spacing_high_thickness</option>
+                        <option value="3">avg_spacing_low_thickness</option>
+                        <option value="4">avg_spacing_lower_thickness</option>
+                        <option value="5">far_spacing_avg_thickness</option>
+                        <option value="6">far_spacing_high_thickness</option>
+                        <option value="7">far_spacing_low_thickness</option>
+                        <option value="8">far_spacing_lower_thickness</option>
+                        <option value="9">close_spacing_avg_thickness</option>
+                        <option value="10">close_spacing_high_thickness</option>
+                        <option value="11">close_spacing_low_thickness</option>
+                        <option value="12">close_spacing_lower_thickness</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eyebrows_shape" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_eyebrows_fullness">gene_eyebrows_fullness</label>
+                    <select name="gene_eyebrows_fullness" id="gene_eyebrows_fullness_current">
+                        <option value="0">no_eyebrows</option>
+                        <option value="1">layer_2_avg_thickness</option>
+                        <option value="2">layer_2_high_thickness</option>
+                        <option value="3">layer_2_low_thickness</option>
+                        <option value="4">layer_2_lower_thickness</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eyebrows_fullness" min="0" max="255">
+                    <select name="gene_eyebrows_fullness" id="gene_eyebrows_fullness_inherit">
+                        <option value="0">no_eyebrows</option>
+                        <option value="1">layer_2_avg_thickness</option>
+                        <option value="2">layer_2_high_thickness</option>
+                        <option value="3">layer_2_low_thickness</option>
+                        <option value="4">layer_2_lower_thickness</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_eyebrows_fullness" min="0" max="255">
+                </div>
+                <div>
+                    <label for="gene_body_hair">gene_body_hair</label>
+                    <select name="gene_body_hair" id="gene_body_hair_current">
+                        <option value="0">body_hair_sparse</option>
+                        <option value="1">body_hair_avg</option>
+                        <option value="2">body_hair_dense</option>
+                        <option value="3">body_hair_sparse_low_stubble</option>
+                        <option value="4">body_hair_avg_low_stubble</option>
+                        <option value="5">body_hair_dense_low_stubble</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_body_hair" min="0" max="255">
+                    <select name="gene_body_hair" id="gene_body_hair_inherit">
+                        <option value="0">body_hair_sparse</option>
+                        <option value="1">body_hair_avg</option>
+                        <option value="2">body_hair_dense</option>
+                        <option value="3">body_hair_sparse_low_stubble</option>
+                        <option value="4">body_hair_avg_low_stubble</option>
+                        <option value="5">body_hair_dense_low_stubble</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="gene_body_hair" min="0" max="255">
+                </div>
+                <div>
+                    <label for="hairstyles">hairstyles</label>
+                    <select name="hairstyles" id="hairstyles_current">
+                        <option value="0">all_hairstyles</option>
+                        <option value="1">no_hairstyles</option>
+                        <option value="2">western_hairstyles</option>
+                        <option value="3">mena_hairstyles</option>
+                        <option value="4">byzantine_hairstyles</option>
+                        <option value="5">sub_saharan_hairstyles</option>
+                        <option value="6">rtt_hairstyles</option>
+                        <option value="7">indian_hairstyles</option>
+                        <option value="8">northern_hairstyles</option>
+                        <option value="9">steppe_hairstyles</option>
+                        <option value="10">catholic_devoted_hairstyles</option>
+                        <option value="11">western_baby_hairstyles</option>
+                        <option value="12">sub_saharan_baby_hairstyles</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="hairstyles" min="0" max="255">
+                    <select name="hairstyles" id="hairstyles_inherit">
+                        <option value="0">all_hairstyles</option>
+                        <option value="1">no_hairstyles</option>
+                        <option value="2">western_hairstyles</option>
+                        <option value="3">mena_hairstyles</option>
+                        <option value="4">byzantine_hairstyles</option>
+                        <option value="5">sub_saharan_hairstyles</option>
+                        <option value="6">rtt_hairstyles</option>
+                        <option value="7">indian_hairstyles</option>
+                        <option value="8">northern_hairstyles</option>
+                        <option value="9">steppe_hairstyles</option>
+                        <option value="10">catholic_devoted_hairstyles</option>
+                        <option value="11">western_baby_hairstyles</option>
+                        <option value="12">sub_saharan_baby_hairstyles</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="hairstyles" min="0" max="255">
+                </div>
+                <div>
+                    <label for="beards">beards</label>
+                    <select name="beards" id="beards_current">
+                        <option value="0">no_beard</option>
+                        <option value="1">all_beards</option>
+                        <option value="2">western_beards</option>
+                        <option value="3">rtt_beards</option>
+                        <option value="4">mena_beards</option>
+                        <option value="5">northern_beards</option>
+                        <option value="6">steppe_beards</option>
+                        <option value="7">sub_saharan_beards</option>
+                        <option value="8">indian_beards</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="beards" min="0" max="255">
+                    <select name="beards" id="beards_inherit">
+                        <option value="0">no_beard</option>
+                        <option value="1">all_beards</option>
+                        <option value="2">western_beards</option>
+                        <option value="3">rtt_beards</option>
+                        <option value="4">mena_beards</option>
+                        <option value="5">northern_beards</option>
+                        <option value="6">steppe_beards</option>
+                        <option value="7">sub_saharan_beards</option>
+                        <option value="8">indian_beards</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="beards" min="0" max="255">
+                </div>
+                <div>
+                    <label for="eye_accessory">eye_accessory</label>
+                    <select name="eye_accessory" id="eye_accessory_current">
+                        <option value="0">normal_eyes</option>
+                        <option value="1">normal_eyes_no_shadow</option>
+                        <option value="2">normal_eyes_dark_iris</option>
+                        <option value="3">normal_eyes_asian</option>
+                        <option value="4">bloodshot_eyes</option>
+                        <option value="5">blind_eyes</option>
+                        <option value="6">no_eyes</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="eye_accessory" min="0" max="255">
+                    <select name="eye_accessory" id="eye_accessory_inherit">
+                        <option value="0">normal_eyes</option>
+                        <option value="1">normal_eyes_no_shadow</option>
+                        <option value="2">normal_eyes_dark_iris</option>
+                        <option value="3">normal_eyes_asian</option>
+                        <option value="4">bloodshot_eyes</option>
+                        <option value="5">blind_eyes</option>
+                        <option value="6">no_eyes</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="eye_accessory" min="0" max="255">
+                </div>
+                <div>
+                    <label for="teeth_accessory">teeth_accessory</label>
+                    <select name="teeth_accessory" id="teeth_accessory_current">
+                        <option value="0">normal_teeth</option>
+                        <option value="1">no_teeth</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="teeth_accessory" min="0" max="255">
+                    <select name="teeth_accessory" id="teeth_accessory_inherit">
+                        <option value="0">normal_teeth</option>
+                        <option value="1">no_teeth</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="teeth_accessory" min="0" max="255">
+                </div>
+                <div>
+                    <label for="eyelashes_accessory">eyelashes_accessory</label>
+                    <select name="eyelashes_accessory" id="eyelashes_accessory_current">
+                        <option value="0">no_eyelashes</option>
+                        <option value="1">normal_eyelashes</option>
+                        <option value="2">asian_eyelashes</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="eyelashes_accessory" min="0" max="255">
+                    <select name="eyelashes_accessory" id="eyelashes_accessory_inherit">
+                        <option value="0">no_eyelashes</option>
+                        <option value="1">normal_eyelashes</option>
+                        <option value="2">asian_eyelashes</option>
+                    </select>
+                    <input type="number" name="dlg-input-number" class="eyelashes_accessory" min="0" max="255">
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
 </body>
     <script> window.$ = window.jQuery = require('./lib/jquery-3.5.1.min'); </script>
     <script> require('./lib/jquery-ui-1.12.1/jquery-ui.min'); </script>

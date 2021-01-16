@@ -11,6 +11,11 @@ var ctx = {
             object : undefined,
             open : false,
             img : undefined
+        },
+        edit : {
+            object : undefined,
+            open : false,
+            img : undefined
         }
     }
 }
@@ -23,12 +28,14 @@ jQuery(function(){
 
     registerIpcEventHandler();
 
-    requestIpcEvent("REQ_DNA_DB");
+    loadDnaDatabase();
 
+    $('body').show();
 });
 
 
 function constructUi() {
+
     $("button").button();
 
     $("#list-dna-item").sortable();
@@ -36,6 +43,8 @@ function constructUi() {
     $("#fldset-dna-format").controlgroup();
 
     makeAddDnaDialog();
+    makeEditDnaDialog();
+
 }
 
 function registerEventHandler() {
@@ -64,6 +73,39 @@ function registerEventHandler() {
         else {
             alert('삭제할 항목을 선택 해주세요.');
         }
+    });
+
+    $("#btn-edit-dna").click( function(e) {
+        let id = ctx.selected_id;
+
+        if(id) {
+            let data = ctx.data.filter( (e) => { return e.id == id; })[0];
+
+            fillEditDialogForm(data.geneArray);
+
+            ctx.dialog.edit.object.dialog("open");
+            ctx.dialog.edit.open = true;
+            e.preventDefault();
+        }
+        else {
+            alert('편집할 항목을 선택 해주세요');
+        }
+    });
+
+    $("input[type=number]").keyup(function(e){
+
+        if( $(this).val() < 0) {
+            alert("값의 범위는 0 ~ 255 입니다");
+            $(this).val(0);
+        }
+        else if( $(this).val() > 255 ) {
+            alert("값의 범위는 0 ~ 255 입니다");
+            $(this).val(255);
+        } else {}
+    });
+
+    $("select").selectmenu({
+        width:280
     });
 
     $("input[name=dna-format]").click(function(e) {
@@ -96,21 +138,18 @@ function triggerDefaultEvent() {
     $("#base64").trigger("click");
 }
 
+function loadDnaDatabase() {
+    ctx.data = ck3.loadDnaDb();
+
+    if(ctx.data) {
+        for(let item of ctx.data) {
+            item.temp = false;
+            addDnaItemToList(item);
+        }
+    }
+}
+
 function registerIpcEventHandler() {
-    ipcRenderer.on("DATA_DNA_DB", (event, result) => {
-
-        if(result.status == "success") {
-            ctx.data = result.data;
-
-            for(let item of ctx.data) {
-                item.temp = false;
-                addDnaItemToList(item);
-            }
-        }
-        else {
-            console.log(result.error);
-        }
-    });
 
     ipcRenderer.on("EVT-KEYBOARD", (event, key) => {
         if(key == "Ctrl-D") {
@@ -120,7 +159,6 @@ function registerIpcEventHandler() {
                 if(text.length > 0) {
                     $("#dlg-dna").val(text);
                 }
-
             }
         }
 
@@ -166,6 +204,10 @@ function requestIpcEvent(evtName, data) {
 
 function setDnaCodeTextareaContent(code) {
     $("#ta-code-dna").text(code);
+    copyCodeToClipboard(code);
+}
+
+function copyCodeToClipboard(code) {
     navigator.clipboard.writeText(code);
 }
 
@@ -184,8 +226,6 @@ function makeAddDnaDialog() {
             }
         },
         close : addDnaDialogClose
-
-
     });
 
     function addDnaDialogOk() {
@@ -243,7 +283,8 @@ function makeAddDnaDialog() {
         let item = {
             id : id,
             name : name,
-            dna : ck3.toBase64Format(geneArray)
+            dna : ck3.toBase64Format(geneArray),
+            geneArray : geneArray
         }
 
         if(img) {
@@ -258,9 +299,75 @@ function makeAddDnaDialog() {
     }
 }
 
+function makeEditDnaDialog() {
+
+    ctx.dialog.edit.object = $("#edit-dna-dialog-form").dialog({
+        autoOpen : false,
+        height : 700,
+        width : 1200,
+        modal : true,
+        buttons : {
+            "Base64" : function(){
+                let geneArray = compileGeneArray();
+                let code = ck3.toBase64Format(geneArray);
+                copyCodeToClipboard(code);
+
+                console.log(code);
+            },
+            "Ruler-Desginer" : function(){
+                let geneArray = compileGeneArray();
+                let code = ck3.toRulerDesignerFormat(geneArray);
+                copyCodeToClipboard(code);
+
+                console.log(code);
+            },
+            "종료" : function() {
+                editDnaDialogClose();
+                ctx.dialog.edit.object.dialog("close");
+            }
+        },
+        close : editDnaDialogClose
+    });
+
+    function editDnaDialogClose() {
+        ctx.dialog.edit.open = false;
+    }
+
+    function compileGeneArray() {
+        let geneArray = [];
+        let geneIndex = ck3.getGeneIndexKeys();
+
+
+        $(".hair_color").each( (index, item) => {
+            geneArray.push( $(item).val() );
+        });
+
+        $(".skin_color").each( (index, item) => {
+            geneArray.push( $(item).val() );
+        });
+
+        $(".eye_color").each( (index, item) => {
+            geneArray.push( $(item).val() );
+        });
+
+        for(let gene of geneIndex) {
+            geneArray.push( $(`#${gene}_current`).children(":selected").val() );
+            geneArray.push( $(`.${gene}`).first().val() );
+            geneArray.push( $(`#${gene}_inherit`).children(":selected").val() );
+            geneArray.push( $(`.${gene}`).last().val() );
+        }
+
+        geneArray = geneArray.map((e) => { return Number(e)});
+
+        return geneArray;
+    }
+
+}
+
 function addDnaItemToList(item) {
     let geneArray = ck3.parseBase64Dna(item.dna);
     item.rulerdesigner = ck3.toRulerDesignerFormat(geneArray);
+    item.geneArray = geneArray;
 
     let name = (item.name.length > 25) ? item.name.substr(0, 25).concat("...") : item.name;
 
@@ -298,3 +405,39 @@ function addDnaItemToList(item) {
     $("#list-dna-item").append(li);
 }
 
+function fillEditDialogForm(geneArray) {
+    let i = 0;
+
+    let geneIndex = ck3.getGeneIndexKeys();
+
+    $(".hair_color").each( (index, item) => {
+        $(item).val( geneArray[i++] );
+    });
+    $(".skin_color").each( (index, item) => {
+        $(item).val( geneArray[i++] );
+    });
+    $(".eye_color").each( (index, item) => {
+        $(item).val( geneArray[i++] );
+    });
+
+    for(let gene of geneIndex) {
+        $(`#${gene}_current`).children().each( (index, item) => {
+            if($(item).val() == geneArray[i]) {
+                $(item).attr('selected', 'selected');
+                $(`#${gene}_current`).selectmenu("refresh", true);
+            }
+        });
+        $(`.${gene}`).first().val(geneArray[i+1]);
+        $(`#${gene}_inherit`).children().each( (index, item) => {
+            if( $(item).val() == geneArray[i+2] ) {
+                $(item).attr('selected', 'selected');
+                $(`#${gene}_inherit`).selectmenu("refresh", true);
+            }
+        });
+        $(`.${gene}`).last().val(geneArray[i+3]);
+
+        i = i + 4;
+    }
+
+
+}

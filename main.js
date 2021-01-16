@@ -93,7 +93,8 @@ function registerWinHandler(win) {
             win.webContents.openDevTools();
             event.preventDefault();
         }
-
+        */
+        /*
         if(input.key.toLowerCase() === 'f5') {
             win.reload();
             event.preventDefault();
@@ -111,71 +112,61 @@ function registerWinHandler(win) {
 }
 
 function registerIpcHandler() {
-    ipcMain.on('REQ_DNA_DB', (event, arg) => {
-        let result = {};
-
-        try {
-            result.data = ck3.loadDnaDb();
-            result.status = "success";
-
-        } catch (error) {
-            result.error = error;
-            result.status = "error";
-        }
-
-        event.reply('DATA_DNA_DB', result);
-    });
 
     ipcMain.on('RES_CTX_DATA_SAVE_EXIT', (event, arg) => {
         let ctxData = arg;
-        let dataArray = [];
 
-        for(let item of ctxData) {
+        if(ctxData) {
+            let dataArray = [];
+            for(let item of ctxData) {
 
-            if(item.hasOwnProperty('remove')) {
-                fs.unlink(`data/img/${item.id}.png`,function(err) {
-                    if(err) return console.log(err);
-                });
-            } else {
-                let data = {};
-                data.id = item.id;
-                data.name = item.name;
-                data.dna = item.dna;
+                if(item.hasOwnProperty('remove')) {
+                    fs.unlink(`data/img/${item.id}.png`,function(err) {
+                        if(err) return console.log(err);
+                    });
+                } else {
+                    let data = {};
+                    data.id = item.id;
+                    data.name = item.name;
+                    data.dna = item.dna;
 
-                dataArray.push(data);
+                    dataArray.push(data);
+                }
             }
-        }
 
-        let dnaData = { data : dataArray };
-        let jsonString = JSON.stringify(dnaData);
-        ck3.saveDnaDb(jsonString);
+            let dnaData = { data : dataArray };
+            let jsonString = JSON.stringify(dnaData);
+            ck3.saveDnaDb(jsonString);
+        }
 
         app.exit();
     });
 
     ipcMain.on('RES_CTX_DATA_EXIT', (event, arg) => {
         let ctxData = arg;
-        let dataArray = [];
 
-        for(let item of ctxData) {
+        if(ctxData) {
+            let dataArray = [];
+            for(let item of ctxData) {
 
-            if(item.hasOwnProperty('remove') || (item.temp == true)) {
-                fs.unlink(`data/img/${item.id}.png`,function(err) {
-                    if(err) return console.log(err);
-                });
-            } else {
-                let data = {};
-                data.id = item.id;
-                data.name = item.name;
-                data.dna = item.dna;
+                if(item.hasOwnProperty('remove') || (item.temp == true)) {
+                    fs.unlink(`data/img/${item.id}.png`,function(err) {
+                        if(err) return console.log(err);
+                    });
+                } else {
+                    let data = {};
+                    data.id = item.id;
+                    data.name = item.name;
+                    data.dna = item.dna;
 
-                dataArray.push(data);
+                    dataArray.push(data);
+                }
             }
-        }
 
-        let dnaData = { data : dataArray };
-        let jsonString = JSON.stringify(dnaData);
-        ck3.saveDnaDb(jsonString);
+            let dnaData = { data : dataArray };
+            let jsonString = JSON.stringify(dnaData);
+            ck3.saveDnaDb(jsonString);
+        }
 
         app.exit();
     });
