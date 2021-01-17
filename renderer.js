@@ -147,6 +147,10 @@ function loadDnaDatabase() {
             addDnaItemToList(item);
         }
     }
+    else {
+        // First Launch
+        ctx.data = [];
+    }
 }
 
 function registerIpcEventHandler() {
