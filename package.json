@@ -1,6 +1,6 @@
 {
   "name": "ck3-dna-manager",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Crusader Kings 3 DNA Manager",
   "main": "main.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "electron-packager": "^15.2.0"
   },
   "build": {
-    "asar": false,
+    "asar": true,
     "appId": "com.welshtokki.ck3",
     "productName": "CK3 DNA Manager",
     "win": {
@@ -37,7 +37,7 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "perMachine": false,
+      "perMachine": true,
       "installerIcon": "./icon/ck3.ico",
       "createDesktopShortcut": true
     },

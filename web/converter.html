@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CK3 DNA Converter</title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="../icon/ck3_256.png" sizes="256x256" type="image/png">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <style>
+            textarea#input-dna {
+                margin: 20px 0px;
+                height: 400px;
+                resize: none;
+            }
+
+            textarea#output-dna {
+                margin: 20px 0px;
+                height: 400px;
+                resize: none;
+            }
+
+            .btn-block {
+                width: 100%;
+            }
+        </style>
+
+        <script type="module">
+            import { DNA } from './dna.js'
+
+            document.addEventListener('DOMContentLoaded', init)
+
+            function init(){
+                document.querySelector('#input-dna').addEventListener('paste', event => {
+                    const paste = (event.clipboardData || window.clipboardData).getData('text');
+
+                    try {
+                        const dna = new DNA(paste)
+                        setLabel('input-dna', dna.type)
+                        document.querySelector('#input-dna').classList.remove('is-invalid')
+                        document.querySelector('#input-dna').classList.add('is-valid')
+                    } catch (error) {
+                        setLabel('input-dna', 'Invalid DNA Code')
+                        document.querySelector('#input-dna').classList.add('is-invalid')
+                        console.log(error)
+                    }
+
+                })
+
+
+
+                document.querySelector('#btn-convert').addEventListener('click', event => {
+
+                    const code = document.querySelector('#input-dna').value
+
+                    if(code.trim().length !== 0) {
+
+                        try {
+                            const dna = new DNA(code)
+                            const output = dna.convert()
+
+                            document.querySelector('#output-dna').classList.add('is-valid')
+                            document.querySelector('#output-dna').value = output
+                        } catch (error) {
+                            setLabel('input-dna', 'Invalid DNA Code')
+                            document.querySelector('#input-dna').classList.add('is-invalid')
+                            document.querySelector('#output-dna').classList.remove('is-valid')
+                            document.querySelector('#output-dna').value = ''
+
+                            console.log(error)
+                        }
+
+                    }
+                })
+
+                document.querySelector('#input-dna').addEventListener('keyup', event => {
+                    if(event.target.value.trim().length === 0) {
+                        document.querySelector('#input-dna').classList.remove('is-invalid')
+                        document.querySelector('#input-dna').classList.remove('is-valid')
+                        setLabel('input-dna', 'DNA')
+                    }
+                })
+
+                document.querySelector('#output-dna').addEventListener('keyup', event => {
+                    if(event.target.value.trim().length === 0) {
+                        document.querySelector('#output-dna').classList.remove('is-invalid')
+                        document.querySelector('#output-dna').classList.remove('is-valid')
+                    }
+                })
+
+            }
+
+            function setLabel(id, text) {
+                const label = document.querySelector(`label[for=${id}]`)
+                label.textContent = text
+            }
+        </script>
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Crusader Kings 3 DNA Converter</h1>
+
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Input a DNA code" id="input-dna"></textarea>
+                <label for="input-dna">DNA</label>
+            </div>
+
+            <button id="btn-convert" class="btn btn-primary btn-block" type="button">Convert DNA</button>
+
+            <div class="form-floating">
+                <textarea class="form-control" id="output-dna"></textarea>
+                <label for="output-dna"></label>
+            </div>
+        </div>
+    </body>
+</html>
